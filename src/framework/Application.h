@@ -4,6 +4,7 @@
 #include <QApplication>
 
 class QSplashScreen;
+class IMediator;
 
 class CApplication
 	: public QApplication
@@ -27,7 +28,7 @@ private Q_SLOTS:
 	void slotLoadMessage(int type, QString msg);
 private:
 	QSplashScreen* _splash_screen;
-
+	IMediator* _mediator;
 };
 
 

@@ -2,10 +2,12 @@
 #include "Application.h"
 #include "PluginMgr.h"
 #include "AsynchronousThread.h"
+#include "Mediator.h"
 
 CApplication::CApplication(int &argc, char **argv)
 	: QApplication(argc, argv)
 	, _splash_screen(nullptr)
+	, _mediator(nullptr)
 {
 	init();
 }
@@ -24,7 +26,7 @@ void CApplication::initialization()
 	connect(CPluginMgr::instance(), SIGNAL(loadMessage(int, QString)), this, SLOT(slotLoadMessage(int, QString)));
 
 
-	CPluginMgr::instance()->initialization();
+	CPluginMgr::instance()->initialization(_mediator);
 
 
 	
@@ -51,6 +53,7 @@ void CApplication::closeSplash()
 
 void CApplication::init()
 {
+	_mediator = new CMediator(this);
 	_splash_screen = new QSplashScreen(QPixmap(":/resources/splash.jpg"));
 }
 

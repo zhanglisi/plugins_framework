@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-
+class IMediator;
 
 
 class CPluginMgr
@@ -15,7 +15,7 @@ public:
 
 	virtual ~CPluginMgr();
 
-	void initialization();
+	void initialization(IMediator* mediator);
 
 public:
 	enum MsgLevel
@@ -38,6 +38,7 @@ protected:
 private:
 	static CPluginMgr* _plugin_mgr;
 
+	IMediator* _mediator;
 };
 
 

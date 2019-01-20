@@ -4,10 +4,14 @@
 #include "PluginCfg.h"
 #include "PluginInfo.h"
 
+#include "IMediator.h"
+#include "IFacade.h"
+
 CPluginMgr* CPluginMgr::_plugin_mgr = new CPluginMgr();
 
 CPluginMgr::CPluginMgr(QObject* parent/* = nullptr*/)
 	: QObject(parent)
+	, _mediator(nullptr)
 {
 	
 }
@@ -22,8 +26,9 @@ CPluginMgr::~CPluginMgr()
 
 }
 
-void CPluginMgr::initialization()
+void CPluginMgr::initialization(IMediator* mediator)
 {
+	_mediator = mediator;
 	init();
 }
 
@@ -42,6 +47,13 @@ void CPluginMgr::init()
 			continue;
 		}
 		QString loader_path;
+
+#ifndef NDEBUG
+		info->setName(info->getName() + "d");
+#else
+		info->setName(info->getName());
+#endif
+
 #ifndef X11
 		loader_path = info->getPath() + "/" + info->getName() + ".dll";
 #else
@@ -57,6 +69,10 @@ void CPluginMgr::init()
 		if (loader->load())
 		{
 			info->setObject(loader->instance());
+
+			IFacade* facade = dynamic_cast<IFacade*>(info->getObject());
+			facade->initialize(_mediator);
+
 			eLevel = Infomation;
 			strInfo = "load " + loader->fileName() + " success.";
 		}
