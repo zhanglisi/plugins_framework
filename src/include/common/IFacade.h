@@ -19,26 +19,28 @@ public:
 	 * Method:    getName
 	 * Access:    virtual public 
 	 * Returns:   QT_NAMESPACE::QString
-	 * Qualifier:
 	 */
 	virtual QString getName() = 0;
 	/*
 	 * Method:    getVersion
 	 * Access:    virtual public 
 	 * Returns:   QT_NAMESPACE::QString
-	 * Qualifier:
 	 */
 	virtual QString getVersion() = 0;
 	/*
 	 * Method:    initialize
 	 * Access:    virtual public 
 	 * Returns:   void
-	 * Qualifier:
 	 * Parameter: IMediator * mediator
 	 */
 	virtual void initialize(IMediator* mediator) = 0;
-
-
+	/*
+	 * Method:    askfor
+	 * FullName:  IFacade::askfor
+	 * Returns:   void
+	 * Parameter: QString type
+	 */
+	virtual void askfor(QString type) = 0;
 
 };
 

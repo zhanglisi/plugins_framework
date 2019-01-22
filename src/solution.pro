@@ -1,7 +1,7 @@
 
 TEMPLATE = subdirs
 
-#解决方案目录
+#solution sub dir
 SUBDIRS = framework \
 		PorlorLog \
 		
