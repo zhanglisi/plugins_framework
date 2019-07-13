@@ -103,6 +103,11 @@ bool CMediator::execute(QString command, QVariant& val)
 	}
 	return bRet;
 }
+bool CMediator::execute(QString command, void** val)
+{
+	
+	return false;
+}
 
 void CMediator::slot_response(IFacade* facade, QString type, QVariant val)
 {

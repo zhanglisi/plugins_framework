@@ -23,6 +23,8 @@ public:
 	virtual bool request(IFacade* facade, QString type) final;
 
 	virtual bool execute(QString command, QVariant& val) final;
+	
+	virtual bool execute(QString command, void** val) final;
 
 private:
 	void slot_response(IFacade* facade, QString type, QVariant val);

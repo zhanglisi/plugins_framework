@@ -11,6 +11,8 @@ public:
 	 * Parameter: QString command
 	 */
 	virtual bool execute(QString command, QVariant& val) = 0;
+	
+	virtual bool execute(QString command, void** val) = 0;
 
 };
 
